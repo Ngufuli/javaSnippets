@@ -20,7 +20,7 @@ public class CreditCard{
 
     //methods
     public String getCustomer(){return customer;}
-    pubi String getBank(){return bank;}
+    public String getBank(){return bank;}
     public String getAccount(){return account;}
     public int getLimit(){return limit;}
     public double getBalance(){return balance;}
@@ -29,8 +29,11 @@ public class CreditCard{
     public boolean charge(double price){
         if(price + balance > limit)
         return true;
+        //at this point, the charge is successful
+        balance += price;
+        return true;
     }
-    public void makePayment(double amout){
+    public void makePayment(double amount){
         balance -= amount;
     }
     //method to print account information
@@ -39,5 +42,26 @@ public class CreditCard{
         System.out.println("Bank = " + card.bank);
         System.out.println("Account = " + card.balance);
         System.out.println("Limit = " + card.limit);
+    }
+
+    //entry point
+    public static void main(String[] args){
+        CreditCard[] wallet = new CreditCard[3];
+        wallet[0] = new CreditCard("Jon Bowman", "California Savings", "5391 0375 9387 5309", 5000);
+        wallet[1] = new CreditCard("Jon Bowman","California Federal","3485 0399 3395 1954 5300", 3500);
+        wallet[2] = new CreditCard("Jon Bowman","California Finance","5391 0375 9387 5209", 300);
+
+        for (int val=1; val<=16; val++){
+            wallet[0].charge(3*val);
+            wallet[1].charge(2*val);
+            wallet[2].charge(val);
+        }
+        for(CreditCard card: wallet){
+            CreditCard.printSummary(card);
+            while(card.getBalance() > 200){
+                card.makePayment(200);
+                System.out.println("New balance = " + card.getBalance());
+            }
+        }
     }
 }
