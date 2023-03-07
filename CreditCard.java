@@ -36,5 +36,8 @@ public class CreditCard{
     //method to print account information
     public static void printSummary(CreditCard card){
         System.out.println("Customer = " + card.customer);
+        System.out.println("Bank = " + card.bank);
+        System.out.println("Account = " + card.balance);
+        System.out.println("Limit = " + card.limit);
     }
 }
