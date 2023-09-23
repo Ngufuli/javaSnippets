@@ -31,3 +31,21 @@ public class Progression {
         System.out.println();
     }
 }
+
+public class ArithmeticProgression extends Progression {
+    protected long increment;
+
+    // Construction of progression
+    public ArithmenticProgression(long stepsize){this(stepsize, 0);}
+
+    // constructs arithmetic progression with arbitrary start and increment
+    public ArithmeticProgression(long stepsize, long start) {
+        super(start);
+        increment = stepsize;
+    }
+
+    // Adds the arithmetic increment to the current value
+    protected void advance() {
+        current += increment;
+    }
+}
